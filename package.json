@@ -8,7 +8,7 @@
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
     "build": "node ./src/build.js && node-sass ./styles/styles.scss ./src/styles.css && cpy ./src/styles.css dist",
     "browser-sync": "browser-sync start --server --files dist/index.html dist/styles.css",
-    "dev": "concurrently npm:sass-watch npm:browser-sync",
+    "dev": "concurrently npm:sass-watch npm:browser-sync nodemon ./src/app.js",
     "sass": "node-sass --source-map-embed styles/styles.scss styles.css",
     "sass-watch": "node-sass --watch styles/styles.scss --recursive styles.css",
     "prettier": "prettier --write .",
@@ -28,11 +28,15 @@
     "eslint-plugin-import": "^2.25.4",
     "jest": "^27.5.0",
     "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "sass": "^1.49.7",
     "sass-watch": "^0.1.0",
     "stylelint": "^14.3.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-config-standard": "^24.0.0"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
   }
 }

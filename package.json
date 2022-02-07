@@ -2,9 +2,19 @@
   "name": "v2",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
+    "build": "node ./src/build.js && node-sass ./styles/styles.scss ./src/styles.css && cpy ./src/styles.css dist",
+    "browser-sync": "browser-sync start --server --files dist/index.html dist/styles.css",
+    "dev": "concurrently npm:sass-watch npm:browser-sync",
+    "sass": "node-sass --source-map-embed styles/styles.scss styles.css",
+    "sass-watch": "node-sass --watch styles/styles.scss --recursive styles.css",
+    "prettier": "prettier --write .",
+    "lint": "concurrently npm:lint:*",
+    "lint:eslint": "eslint ./src/**/*.js",
+    "lint:stylelint": "stylelint ./dist/styles.css"
   },
   "keywords": [],
   "author": "",
@@ -12,8 +22,17 @@
   "devDependencies": {
     "browser-sync": "^2.27.7",
     "concurrently": "^7.0.0",
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.0",
     "node-sass": "^7.0.1",
+    "prettier": "^2.5.1",
     "sass": "^1.49.7",
-    "sass-watch": "^0.1.0"
+    "sass-watch": "^0.1.0",
+    "stylelint": "^14.3.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^24.0.0"
   }
 }

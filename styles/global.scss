@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(166, 206, 255);
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  color: rgb(100, 100, 100);
+  text-decoration: none;
+}
+
+.cardholder {
+  margin: 10px;
+  width: 80%;
+}
+
+.card {
+  background-color: #55a4ff;
+  border: 2px solid #000;
+  border-radius: 2%;
+  font-size: 2rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+table {
+  margin: auto;
+  text-align: right;
+}
+
+table td {
+  // border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+tr .calc {
+  margin: auto;
+  text-align: left;
+}
+
+a {
+  margin: auto;
+  margin-top: 1rem;
+}
+
+h2 {
+  text-align: center;
+}

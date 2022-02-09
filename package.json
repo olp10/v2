@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' dotenv -e .env.test -- jest ./test/*.js",
     "build": "node ./src/build.js && node-sass ./styles/styles.scss ./src/styles.css && cpy ./src/styles.css dist",
     "browser-sync": "browser-sync start --server --files dist/index.html dist/styles.css",
     "dev": "concurrently npm:sass-watch npm:browser-sync nodemon ./src/app.js",
@@ -14,7 +14,7 @@
     "prettier": "prettier --write .",
     "lint": "concurrently npm:lint:*",
     "lint:eslint": "eslint ./src/**/*.js",
-    "lint:stylelint": "stylelint ./dist/styles.css"
+    "lint:stylelint": "stylelint ./public/styles.css"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +37,16 @@
     "stylelint-config-standard": "^24.0.0"
   },
   "dependencies": {
-    "express": "^4.17.2"
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "dotenv-cli": "^5.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.14.0",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "pg": "^8.7.3",
+    "xss": "^1.0.10"
   }
 }

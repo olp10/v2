@@ -1,0 +1,18 @@
+<%- include('header', { title: 'Form' }) -%>
+
+<form method="post" action="/" enctype="application/x-www-form-urlencoded">
+  <div class="field">
+    <label for="name">Nafn*</label>>
+      <input type="text" id="name" name="name" value="<%= formData.title %>" class="">
+  </div>
+
+  <div class="field">
+    <label>
+      Lykilorð:
+      <input required type="password" name="password">
+    </label>
+  </div>
+  <button>Senda</button>
+</form>
+
+<%- include('footer') -%>

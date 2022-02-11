@@ -1,4 +1,3 @@
-
 async function create() {
   // TODO setja upp gagnagrunn + gögn
 }

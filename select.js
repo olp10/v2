@@ -1,11 +1,11 @@
 import pg from 'pg';
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 const {
-    DATABASE_URL: connectionString = 'postgres://:@localhost/vef2',
-    NODE_ENV: nodeEnv = 'development',
+  DATABASE_URL: connectionString = 'postgres://:@localhost/vef2',
+  NODE_ENV: nodeEnv = 'development',
 } = process.env;
 
 // Notum SSL tengingu við gagnagrunn ef við erum *ekki* í development
@@ -15,30 +15,32 @@ const ssl = nodeEnv !== 'development' ? { rejectUnauthorized: false } : false;
 const pool = new pg.Pool({ connectionString, ssl });
 
 pool.on('error', (err) => {
-    console.error('postgres error, exiting ... ', err);
-    process.exit(-1);
+  console.error('postgres error, exiting ... ', err);
+  process.exit(-1);
 });
 
 async function main() {
-    let client;
+  let client;
 
-    try {
-        client =  await pool.connect();
-    } catch (e) {
-        console.error('Unable to connect', e);
-        return;
-    }
+  try {
+    client = await pool.connect();
+  } catch (e) {
+    console.error('Unable to connect', e);
+    return;
+  }
 
-    try {
-        const result = await client.query('SELECT * FROM people');
-        console.info(result);
-    } catch (e) {
-        console.error('Error selecting', e);
-    } finally {
-        client.release();
-    }
+  try {
+    const result = await client.query('SELECT * FROM people');
+    console.info(result);
+  } catch (e) {
+    console.error('Error selecting', e);
+  } finally {
+    client.release();
+  }
 
-    await pool.end();
+  await pool.end();
 }
 
-main().catch((e) => { console.error(e); });
+main().catch((e) => {
+  console.error(e);
+});

@@ -1,11 +1,32 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import { body, validationResult } from 'express-validator';
 import { dirname, join } from 'path';
+import pg from 'pg';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
 
-const { PORT: port = 3000 } = process.env;
+const {
+  // eslint-disable-next-line no-unused-vars
+  HOST: hostname = '127.0.0.1',
+  PORT: port = 3000,
+  DATABASE_URL: connectionString,
+  NODE_ENV: nodeEnv,
+} = process.env;
+
+// Notum SSL tengingu við gagnagrunn ef við erum *ekki* í development
+// mode, á heroku, ekki á local vél
+const ssl = nodeEnv !== 'development' ? { rejectUnauthorized: false } : false;
+
+const pool = new pg.Pool({ connectionString, ssl });
+
+pool.on('error', (err) => {
+  console.error('postgres error, exiting... ', err);
+  process.exit(-1);
+});
+
+console.log('connectionString :>> ', connectionString);
 
 const app = express();
 
@@ -18,7 +39,6 @@ app.use(express.static(join(path, '../public')));
 
 app.set('views', join(path, '../views'));
 app.set('view engine', 'ejs');
-
 
 /**
  *
@@ -46,41 +66,105 @@ app.get('/', async (req, res) => {
   const name = 'test';
   // render nær í ejs view úr views möppunni
   res.render('form', {
-  errors: [],
-  data: { name },
-  });
-});
-
-app.post('/post', (req, res) => {
-  const { name, event } = req.body;
-
-  res.render('form', {
-    title: 'Formið mitt',
     errors: [],
-    data: { name, event },  // TEST GÖGN
+    data: { title: name },
   });
 });
 
+async function query(q, values) {
+  let client;
 
+  try {
+    client = await pool.connect();
+  } catch (e) {
+    console.error('Unable to connect', e);
+    return null;
+  }
+
+  try {
+    const result = await client.query(query, values);
+    return result;
+  } catch (e) {
+    console.error('Error running query', e);
+    return null;
+  } finally {
+    client.release();
+  }
+}
+
+async function createEvent( { name, event }) {
+  const q = `
+  INSERT INTO
+    vidburdir(name, text)
+  VALUES($1, $2)
+  RETURNING *`;
+  const values = [name, event];
+
+  const result = await query(q, values);
+  console.info('result :>> ', result);
+  return result !== null;
+}
+
+const validation = [
+  body('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
+  body('event').isLength({ min: 1 }).withMessage('Viðburðsheiti má ekki vera tómt'),
+]
+
+const validationResults = (req, res, next) => {
+  const { name = '', event = '' } = req.body;
+
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map((i) => i.msg);
+    return res.render('form', {
+      title: 'Formið mitt',
+      errors: errorMessages,
+      data: { name, event },
+    });
+  }
+
+  return next();
+}
+
+const postEvent = async (req, res) => {
+  const { name, event } = req.body;
+  console.log('req.body :>> ', req.body);
+
+  const created = await createEvent({ name, event });
+
+  if (created) {
+    return res.send('<p>Athugasemd móttekin</p>');
+  }
+
+  return res.render('form', {
+    title: 'Formið mitt',
+    errors: [{ param: '', msg: 'Gat ekki búið til athugasemt' }],
+    data: { name, event },
+  });
+}
+
+app.post('/post', validation, validationResults, postEvent);
 
 app.get('/admin', (req, res) => {
   res.send('<h1>admin síðan mín</h1>');
 });
 
-/* Middleware sem sér um 404 villur */
-app.use((err, req, res) => {
-  const title = 'Síða fannst ekki';
-  console.error('Villa');
-  res.status(404).render('error', { title });
-});
-
-/** Middleware sem sér um villumeðhöndlun */
 // eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
+function notFoundHandler(req, res, next) {
+  const title = 'Síða fannst ekki';
+  res.status(404).render('error', { title });
+}
+
+// eslint-disable-next-line no-unused-vars
+function errorHandler(err, req, res, next) {
   console.error(err);
   const title = 'Villa kom upp';
   res.status(500).render('error', { title });
-})
+}
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);

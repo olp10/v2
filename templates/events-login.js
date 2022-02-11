@@ -10,5 +10,5 @@ export function template(name = '', password = '') {
       <input required type="password" name="password" value="${password}">
     </label>
     <button>Senda</button>
-  `
+  `;
 }

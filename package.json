@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_OPTIONS='--experimental-vm-modules' dotenv -e .env.test -- jest ./test/*.js",
-    "build": "node ./src/build.js && node-sass ./styles/styles.scss ./src/styles.css && cpy ./src/styles.css dist",
+    "build": "node ./src/build.js",
     "browser-sync": "browser-sync start --server --files dist/index.html dist/styles.css",
     "dev": "concurrently npm:sass-watch npm:browser-sync nodemon ./src/app.js",
     "sass": "node-sass --source-map-embed styles/styles.scss styles.css",

@@ -1,55 +1,95 @@
 * {
   box-sizing: border-box;
+  font-family: $--fonts;
 }
 
 body {
-  background-color: rgb(166, 206, 255);
+  background-color: $white;
+}
+
+a {
+  color: $--color-accent-dark;
 }
 
 h1 {
-  text-align: center;
+  font-size: 3.5rem;
 }
-
-a {
-  color: rgb(100, 100, 100);
-  text-decoration: none;
-}
-
-.cardholder {
-  margin: 10px;
-  width: 80%;
-}
-
-.card {
-  background-color: #55a4ff;
-  border: 2px solid #000;
-  border-radius: 2%;
-  font-size: 2rem;
-  margin: 0 auto;
-  width: 100%;
-}
-
-table {
-  margin: auto;
-  text-align: right;
-}
-
-table td {
-  // border: 1px solid black;
-  border-collapse: collapse;
-  padding: 5px;
-}
-
-tr .calc {
-  margin: auto;
-  text-align: left;
-}
-
-a {
-  margin: auto;
+h2 {
+  font-size: 2.5rem;
   margin-top: 1rem;
 }
 
-h2 {
-  text-align: center;
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+form {
+  display: block;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+label {
+  display: inline-block;
+}
+
+legend {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+input {
+  display: inline-block;
+  position: relative;
+}
+
+textarea {
+  width: 70%;
+  height: 30%;
+}
+
+input,
+textarea {
+  border: 1.5px solid;
+  border-radius: 5px;
+  border-color: $--color-accent;
+  font-size: 1.5rem;
+  position: relative;
+  width: 70%;
+}
+
+button {
+  background-color: $--color-accent-light;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  font-size: 1.5rem;
+  padding: 5px 0;
+  margin-bottom: 2rem;
+  width: 60%;
+}
+
+hr {
+  background-color: $--color-accent-dark;
+  height: 3px;
+}
+
+ul {
+  padding: 0;
+}
+
+.event {
+  list-style-position: outside;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.grid {
+  margin-top: 2em;
 }

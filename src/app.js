@@ -61,10 +61,9 @@ app.locals = {
 // app.use('/', indexRouter);
 // TODO admin routes
 
-app.get('/', async (req, res) => {
+app.get('/admin', async (req, res) => {
   console.info('request to /');
   const name = 'test';
-  // render nær í ejs view úr views möppunni
   res.render('form', {
     errors: [],
     data: { title: name },
@@ -73,7 +72,7 @@ app.get('/', async (req, res) => {
 
 async function query(q, values) {
   let client;
-
+  console.log('query :>> ');
   try {
     client = await pool.connect();
   } catch (e) {
@@ -82,7 +81,7 @@ async function query(q, values) {
   }
 
   try {
-    const result = await client.query(query, values);
+    const result = await client.query(q, values);
     return result;
   } catch (e) {
     console.error('Error running query', e);
@@ -92,13 +91,13 @@ async function query(q, values) {
   }
 }
 
-async function createEvent( { name, event }) {
+async function createEvent({ name, event }) {
   const q = `
   INSERT INTO
-    vidburdir(name, text)
-  VALUES($1, $2)
+    vidburdir(name, slug, description)
+  VALUES($1, $2, $3)
   RETURNING *`;
-  const values = [name, event];
+  const values = [name, '', event];
 
   const result = await query(q, values);
   console.info('result :>> ', result);
@@ -107,12 +106,13 @@ async function createEvent( { name, event }) {
 
 const validation = [
   body('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
-  body('event').isLength({ min: 1 }).withMessage('Viðburðsheiti má ekki vera tómt'),
-]
+  body('event')
+    .isLength({ min: 1 })
+    .withMessage('Viðburðsheiti má ekki vera tómt'),
+];
 
 const validationResults = (req, res, next) => {
-  const { name = '', event = '' } = req.body;
-
+  const { name = 'asdf', event = 'asdf' } = req.body;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -125,12 +125,11 @@ const validationResults = (req, res, next) => {
   }
 
   return next();
-}
+};
 
 const postEvent = async (req, res) => {
   const { name, event } = req.body;
-  console.log('req.body :>> ', req.body);
-
+  console.info('req.body :>> ', req.body);
   const created = await createEvent({ name, event });
 
   if (created) {
@@ -139,12 +138,12 @@ const postEvent = async (req, res) => {
 
   return res.render('form', {
     title: 'Formið mitt',
-    errors: [{ param: '', msg: 'Gat ekki búið til athugasemt' }],
+    errors: [{ param: '', msg: 'Gat ekki búið til athugasemd' }],
     data: { name, event },
   });
-}
+};
 
-app.post('/post', validation, validationResults, postEvent);
+app.post('/', validation, validationResults, postEvent);
 
 app.get('/admin', (req, res) => {
   res.send('<h1>admin síðan mín</h1>');

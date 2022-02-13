@@ -58,7 +58,6 @@ app.locals = {
   // TODO hjálparföll fyrir template
 };
 
-// app.use('/', indexRouter);
 // TODO admin routes
 
 app.get('/admin', async (req, res) => {

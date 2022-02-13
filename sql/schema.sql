@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS skraningar (
   FOREIGN KEY(event) REFERENCES vidburdir(id)
 );
 
+INSERT INTO vidburdir
+  (name, slug, description)
+VALUES
+  ('1', '1', '1'),
+  ('2', '2', '2'),
+  ('3', '3', '3');

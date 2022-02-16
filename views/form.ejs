@@ -8,25 +8,13 @@
       <h2>Viðburðir á næstunni</h2>
 
       <ul>
-        <!-- útbúa lúppu sem sýnir alla viðburði og lýsingar, og uppfæra viðburði-->
-      </ul>
-
-      <ul>
-        <li class="event">
-          <a href="#">Forritarahittingur í febrúar</a>
-          <h3>Forritarar hittast í febrúar og forrita saman eitthvað frábært.</h3>
-          <a href="#">Uppfæra viðburð</a>
-        </li>
-        <li class="event">
-          <a href="#">Hönnuðahittingur í mars</a>
-          <h3>Spennandi hittingur hönnuða í Hönnunarmars.</h3>
-          <a href="#">Uppfæra viðburð</a>
-        </li>
-        <li class="event">
-          <a href="#">Verkefnastjórahittingur í apríl</a>
-          <h3>Virkilega vel verkefnastýrður hittingur.</h3>
-          <a href="#">Uppfæra viðburð</a>
-        </li>
+        <% data.events.forEach((event) => { %>
+          <li class="event">
+            <a href="<%= event.slug %>"><%= event.name %></a>
+            <h3><%= event.description %></h3>
+            <a href="#">Uppfæra viðburð</a>
+          </li>
+        <% }) %>
       </ul>
 
       <form method="post" action="/" enctype="application/x-www-form-urlencoded">

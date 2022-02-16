@@ -26,8 +26,6 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
-console.log('connectionString :>> ', connectionString);
-
 const app = express();
 
 // Sér um að req.body innihaldi gögn úr formi
@@ -60,18 +58,9 @@ app.locals = {
 
 // TODO admin routes
 
-app.get('/admin', async (req, res) => {
-  console.info('request to /');
-  const name = 'test';
-  res.render('form', {
-    errors: [],
-    data: { title: name },
-  });
-});
-
 async function query(q, values) {
   let client;
-  console.log('query :>> ');
+
   try {
     client = await pool.connect();
   } catch (e) {
@@ -89,6 +78,28 @@ async function query(q, values) {
     client.release();
   }
 }
+
+async function getEvents() {
+  const q = `
+  SELECT
+    name, slug, description
+  FROM
+    vidburdir
+  `;
+  const result = await query(q);
+  return result.rows;
+}
+
+app.get('/admin', async (req, res) => {
+  console.info('request to /admin');
+  const eventsList = await getEvents();
+  console.info('eventList :>> ', eventsList);
+  const name = 'test';
+  res.render('form', {
+    errors: [],
+    data: { title: name, events: eventsList },
+  });
+});
 
 async function createEvent({ name, event }) {
   const q = `
@@ -111,14 +122,15 @@ const validation = [
 ];
 
 const validationResults = (req, res, next) => {
-  const { name = 'asdf', event = 'asdf' } = req.body;
-  const errors = validationResult(req);
+  const { name = '', event = '' } = req.body;
 
-  if (!errors.isEmpty()) {
-    const errorMessages = errors.array().map((i) => i.msg);
+  const result = validationResult(req);
+
+  if (!result.isEmpty()) {
+    // const errorMessages = errors.array().map((i) => i.msg);
     return res.render('form', {
       title: 'Formið mitt',
-      errors: errorMessages,
+      errors: result.errors,
       data: { name, event },
     });
   }
@@ -142,7 +154,7 @@ const postEvent = async (req, res) => {
   });
 };
 
-app.post('/', validation, validationResults, postEvent);
+app.post('/admin', validation, validationResults, postEvent);
 
 app.get('/admin', (req, res) => {
   res.send('<h1>admin síðan mín</h1>');

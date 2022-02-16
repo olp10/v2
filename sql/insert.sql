@@ -1,9 +1,9 @@
 INSERT INTO vidburdir
   (name, slug, description)
 VALUES
-  ('1', '1', '1'),
-  ('2', '2', '2'),
-  ('3', '3', '3');
+  ('Forritarahittingur í febrúar', 'forritarahittingur.html', 'Forritarar hittast í febrúar og forrita saman eitthvað frábært.'),
+  ('Hönnuðahittingur í mars', 'honnudahittingur.html', 'Spennandi hittingur hönnuða í Hönnunarmars.'),
+  ('Verkefnastjórahittingur í apríl', 'verkefnastjorahittingur.html', 'Virkilega vel verkefnastýrður hittingur.');
 
 INSERT INTO notendur
   (username, password)

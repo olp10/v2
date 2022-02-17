@@ -1,9 +1,13 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import session from 'express-session';
 import { body, validationResult } from 'express-validator';
 import { dirname, join } from 'path';
 import pg from 'pg';
 import { fileURLToPath } from 'url';
+import passport from './login.js';
+import { router as adminRoute } from './routes/admin-route.js';
+import { indexRouter } from './routes/index-route.js';
 
 dotenv.config();
 
@@ -14,6 +18,13 @@ const {
   DATABASE_URL: connectionString,
   NODE_ENV: nodeEnv,
 } = process.env;
+
+if (!connectionString) {
+  console.error('Vantar gögn í env');
+  process.exit(1);
+}
+
+const app = express();
 
 // Notum SSL tengingu við gagnagrunn ef við erum *ekki* í development
 // mode, á heroku, ekki á local vél
@@ -26,8 +37,6 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
-const app = express();
-
 // Sér um að req.body innihaldi gögn úr formi
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,7 +47,18 @@ app.use(express.static(join(path, '../public')));
 app.set('views', join(path, '../views'));
 app.set('view engine', 'ejs');
 
-/**
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false,
+  maxAge: 20 * 1000, // 20 sek
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+/** Hjálparfall til að athuga hvort reitur sé gildur eða ekki
+ *
  *
  * @param {string} field Heiti á reit í formi
  * @param {array} errors Fylki af villum frá express-validator pakkanum
@@ -89,6 +109,9 @@ async function getEvents() {
   const result = await query(q);
   return result.rows;
 }
+
+app.use('/', indexRouter);
+app.use('/admin', adminRoute);
 
 app.get('/admin', async (req, res) => {
   console.info('request to /admin');

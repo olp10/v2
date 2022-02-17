@@ -1,10 +1,13 @@
-import pg from 'pg';
+import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
+import pg from 'pg';
 
 dotenv.config();
 
-const { DATABASE_URL: connectionString, NODE_ENV: nodeEnv = 'development' } =
-  process.env;
+const {
+  DATABASE_URL: connectionString,
+  NODE_ENV: nodeEnv = 'development'
+} = process.env;
 
 const ssl = nodeEnv !== 'development' ? { rejectUnauthorized: false } : false;
 
@@ -26,16 +29,16 @@ export async function query(_query, values = []) {
   }
 }
 
-export async function insert({ name, nationalId, comment, anonymous } = {}) {
+export async function insertEvent({ name, slug, description } = {}) {
   let success = true;
 
   const q = `
-    INSERT INTO signatures
-        (name, nationalId, comment, anonymous)
+    INSERT INTO vidburdir
+        (name, slug, description)
     VALUES
-        ($1, $2, $3, $4);
+        ($1, $2, $3);
     `;
-  const values = [name, nationalId, comment, anonymous === 'on'];
+  const values = [name, slug, description];
 
   try {
     await query(q, values);
@@ -110,10 +113,10 @@ export async function total(search) {
   return 0;
 }
 
-export async function deleteRow(id) {
+export async function deleteEventById(id) {
   let result = [];
   try {
-    const queryResult = await query('DELETE FROM signatures WHERE id = $1', [
+    const queryResult = await query('DELETE FROM vidburdir WHERE id = $1', [
       id,
     ]);
 
@@ -125,6 +128,26 @@ export async function deleteRow(id) {
   }
 
   return result;
+}
+
+export async function createUser(username, password) {
+  const hashedPassword = await bcrypt.hash(password, 11);
+
+  const q = `
+    INSERT INTO
+      notendur (username, password)
+    VALUES($1, $2)
+    RETURNING *
+  `;
+
+  try {
+    const result = await query(q, [username, hashedPassword]);
+    return result.rows[0];
+  } catch (e) {
+    console.error('Gat ekki búið til notanda');
+  }
+
+  return null;
 }
 
 export async function end() {

@@ -39,7 +39,7 @@ export function ensureLoggedIn(req, res, next) {
     return next();
   }
 
-  return res.redirect('/admin/login');
+  return res.redirect('/admin/');
 }
 
 export default passport;

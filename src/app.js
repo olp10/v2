@@ -7,7 +7,7 @@ import pg from 'pg';
 import { fileURLToPath } from 'url';
 import passport from './login.js';
 import { router as adminRoute } from './routes/admin-route.js';
-import { indexRouter } from './routes/index-route.js';
+import { router as indexRouter } from './routes/index-route.js';
 
 dotenv.config();
 
@@ -162,9 +162,9 @@ const validationResults = (req, res, next) => {
 };
 
 const postEvent = async (req, res) => {
-  const { name, event } = req.body;
+  const { name, description } = req.body;
   console.info('req.body :>> ', req.body);
-  const created = await createEvent({ name, event });
+  const created = await createEvent({ name, description });
 
   if (created) {
     return res.send('<p>Athugasemd móttekin</p>');
@@ -173,15 +173,12 @@ const postEvent = async (req, res) => {
   return res.render('form', {
     title: 'Formið mitt',
     errors: [{ param: '', msg: 'Gat ekki búið til athugasemd' }],
-    data: { name, event },
+    data: { name, description },
   });
 };
 
 app.post('/admin', validation, validationResults, postEvent);
 
-app.get('/admin', (req, res) => {
-  res.send('<h1>admin síðan mín</h1>');
-});
 
 // eslint-disable-next-line no-unused-vars
 function notFoundHandler(req, res, next) {

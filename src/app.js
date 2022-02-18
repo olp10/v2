@@ -5,6 +5,7 @@ import { body, validationResult } from 'express-validator';
 import { dirname, join } from 'path';
 import pg from 'pg';
 import { fileURLToPath } from 'url';
+import { getEvents } from './db.js';
 import passport from './login.js';
 import { router as adminRoute } from './routes/admin-route.js';
 import { router as indexRouter } from './routes/index-route.js';
@@ -72,46 +73,11 @@ function isInvalid(field, errors = []) {
 
 app.locals.isInvalid = isInvalid;
 
-app.locals = {
-  // TODO hjálparföll fyrir template
-};
 
-// TODO admin routes
-
-async function query(q, values) {
-  let client;
-
-  try {
-    client = await pool.connect();
-  } catch (e) {
-    console.error('Unable to connect', e);
-    return null;
-  }
-
-  try {
-    const result = await client.query(q, values);
-    return result;
-  } catch (e) {
-    console.error('Error running query', e);
-    return null;
-  } finally {
-    client.release();
-  }
-}
-
-async function getEvents() {
-  const q = `
-  SELECT
-    name, slug, description
-  FROM
-    vidburdir
-  `;
-  const result = await query(q);
-  return result.rows;
-}
-
-app.use('/', indexRouter);
 app.use('/admin', adminRoute);
+app.use('/', indexRouter);
+
+indexRouter.post('/admin/login', adminRoute);
 
 app.get('/admin', async (req, res) => {
   console.info('request to /admin');
@@ -123,19 +89,6 @@ app.get('/admin', async (req, res) => {
     data: { title: name, events: eventsList },
   });
 });
-
-async function createEvent({ name, description }) {
-  const q = `
-  INSERT INTO
-    vidburdir(name, slug, description)
-  VALUES($1, $2, $3)
-  RETURNING *`;
-  const values = [name, '', description];
-
-  const result = await query(q, values);
-  console.info('result :>> ', result.rows);
-  return result !== null;
-}
 
 const validation = [
   body('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
@@ -160,14 +113,15 @@ const validationResults = (req, res, next) => {
 
   return next();
 };
-
+/*
 const postEvent = async (req, res) => {
   const { name, description } = req.body;
   console.info('req.body :>> ', req.body);
-  const created = await createEvent({ name, description });
+  const created = await createEvent({ name, slug: '', description });
 
   if (created) {
     return res.send('<p>Athugasemd móttekin</p>');
+
   }
 
   return res.render('form', {
@@ -176,8 +130,9 @@ const postEvent = async (req, res) => {
     data: { name, description },
   });
 };
+*/
 
-app.post('/', validation, validationResults, postEvent);
+// app.post('/admin', validation, validationResults, postEvent);
 
 // eslint-disable-next-line no-unused-vars
 function notFoundHandler(req, res, next) {
@@ -194,6 +149,12 @@ function errorHandler(err, req, res, next) {
 
 app.use(notFoundHandler);
 app.use(errorHandler);
+
+
+indexRouter.post('/:slug', (req, res) => {
+  console.log('req.body :>> ', req.body);
+  res.redirect('/');
+});
 
 app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);

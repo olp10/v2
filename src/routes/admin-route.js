@@ -1,36 +1,10 @@
 import express from 'express';
-import { query } from '../db.js';
+import { body, validationResult } from 'express-validator';
+import { createEvent, getEvents } from '../db.js';
 import { catchErrors } from '../lib/utils.js';
 import passport, { ensureLoggedIn } from '../login.js';
 
 export const router = express.Router();
-
-export async function getEvents() {
-  const q = `
-  SELECT
-    name, slug, description
-  FROM
-    vidburdir
-  `;
-  const result = await query(q);
-  return result.rows;
-}
-
-export async function getEvent(eventName) {
-  const q = `
-  SELECT
-    name, description
-  FROM
-    vidburdir
-  WHERE
-    name=$1
-  `;
-  const values = [eventName];
-
-  const result = await query(q, values);
-  console.info('result :>> ', result);
-  return result !== null;
-}
 
 async function index(req, res) {
   const user = req.user.username;
@@ -39,7 +13,7 @@ async function index(req, res) {
     data: { events: await getEvents()},
     title: 'Viðburðir - Umsjón',
     admin: true,
-    logout: '/logout',
+    logout: '/admin/logout',
   });
 
 }
@@ -76,21 +50,24 @@ router.post(
   },
 );
 
-async function createEvent(name, slug, description) {
-  const q = `
-  INSERT INTO vidburdir(name, slug, description)
-  VALUES ($1, $2, $3)
-  `;
-  const values = [name, slug, description];
+const validation = [
+  body('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
+  body('description')
+    .isLength({ min: 1 })
+    .withMessage('Viðburðsheiti má ekki vera tómt'),
+];
 
-  const result = await query(q, values);
-  console.info('result :>> ', result);
-  return result !== null;
-}
 
-router.post('/admin', ensureLoggedIn, catchErrors(createEvent));
+router.post('/admin', validation, validationResult, async (req, res) => {
+  console.log('req.params :>> ', req.params);
+  const { data } = req.params;
+  catchErrors(await createEvent(data));
+  res.redirect('/');
+
+  // ensureLoggedIn, catchErrors(createEvent())
+});
 
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
-})
+});

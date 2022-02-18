@@ -1,19 +1,17 @@
 import express from 'express';
 import { getEventBySlug, getEvents } from '../db.js';
 import { catchErrors } from '../lib/catch-errors.js';
-import { router as slugRoute } from './slug-route.js';
 
 export const router = express.Router();
 
-async function indexRoute(req, res) {
-  res.render('index', {
+async function slugRoute(req, res) {
+  res.render('slug', {
     title: 'Viðburðasíðan',
     data: { events: await getEvents()},
   });
 }
 
-router.get('/', catchErrors(indexRoute));
-router.post('/', catchErrors(slugRoute));
+router.get('/', catchErrors(slugRoute));
 
 router.get('/:slug', async (req, res) => {
   const data = await getEventBySlug(req.params.slug);

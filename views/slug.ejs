@@ -1,5 +1,25 @@
 <%- include('header') -%>
 
+<div class="grid">
+  <h1><%= data.name.name %></h1>
+  <h3><%= data.name.description %></h3>
 
 
+  <form method="post" action="/" echtype="application/x-www-form-urlencoded">
+    <legend>Skráðu þig</legend>
+    <div class="field">
+      <label for="name">Nafn*:</label>
+      <input type="text" id="name" name="name" value="" class="">
+    </div>
+
+    <div class="field">
+      <label for="event">Athugasemd:</label>
+        <textarea type="text" name="comment" value="" class=""></textarea>
+    </div>
+    <button>Skrá mig</button>
+
+  </form>
+
+
+</div>
 <%- include('footer') -%>

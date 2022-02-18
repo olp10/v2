@@ -18,6 +18,7 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
+
 export async function query(_query, values = []) {
   const client = await pool.connect();
 
@@ -148,6 +149,102 @@ export async function createUser(username, password) {
   }
 
   return null;
+}
+
+
+export async function getRegistrations(eventName) {
+  const q = `
+  SELECT
+    name, comment
+  FROM
+    skraningar
+  WHERE
+    event=$1
+  `;
+  const values = [eventName];
+
+  const result = await query(q, values);
+  console.log('result.rows :>> ', result.rows);
+  return result.rows;
+}
+
+export async function getEventByName(eventName) {
+  const q = `
+  SELECT
+    name, description
+  FROM
+    vidburdir
+  WHERE
+    name=$1
+  `;
+  const values = [eventName];
+
+  const result = await query(q, values);
+  console.info('result :>> ', result);
+  return result !== null;
+}
+
+export async function getEvents() {
+  const q = `
+  SELECT
+    name, slug, description
+  FROM
+    vidburdir
+  `;
+  const result = await query(q);
+  return result.rows;
+}
+
+export async function getEventBySlug(eventSlug) {
+  const q = `
+  SELECT
+    name, description
+  FROM
+    vidburdir
+  WHERE
+    slug=$1
+  `;
+  const values = [eventSlug];
+
+  const result = await query(q, values);
+  const name = result.rows[0];
+  const description = result.rows[1];
+  // console.log('name, description :>> ', name, description);
+  return { name, description };
+}
+
+export async function createEvent(data) {
+
+  const s = `${data.name}.html`;
+  const q = `
+  INSERT INTO vidburdir(name, slug, description)
+  VALUES ($1, $2, $3)
+  `;
+
+  try {
+    const result = await query(q, [data.name, s, data.description]);
+    console.log('name :>> ', data.name);
+    console.log('description :>> ', data.description);
+    console.log('s :>> ', s);
+    return result.rows;
+  } catch (e) {
+    console.error('Gat ekki bætt við viðburði');
+  }
+
+  return null;
+}
+
+export async function register(name, comment, eventName) {
+  const q = `
+  INSERT INTO
+    skraningar(name, comment, event)
+  VALUES
+    ($1, $2, $3);
+  `
+  const values = [name, comment, eventName];
+
+  const result = await query(q, values);
+  console.info('result.rows :>> ', result.rows);
 }
 
 export async function end() {

@@ -124,28 +124,28 @@ app.get('/admin', async (req, res) => {
   });
 });
 
-async function createEvent({ name, event }) {
+async function createEvent({ name, description }) {
   const q = `
   INSERT INTO
     vidburdir(name, slug, description)
   VALUES($1, $2, $3)
   RETURNING *`;
-  const values = [name, '', event];
+  const values = [name, '', description];
 
   const result = await query(q, values);
-  console.info('result :>> ', result);
+  console.info('result :>> ', result.rows);
   return result !== null;
 }
 
 const validation = [
   body('name').isLength({ min: 1 }).withMessage('Nafn má ekki vera tómt'),
-  body('event')
+  body('description')
     .isLength({ min: 1 })
     .withMessage('Viðburðsheiti má ekki vera tómt'),
 ];
 
 const validationResults = (req, res, next) => {
-  const { name = '', event = '' } = req.body;
+  const { name = '', description = '' } = req.body;
 
   const result = validationResult(req);
 
@@ -154,7 +154,7 @@ const validationResults = (req, res, next) => {
     return res.render('form', {
       title: 'Formið mitt',
       errors: result.errors,
-      data: { name, event },
+      data: { name, description },
     });
   }
 
@@ -177,8 +177,7 @@ const postEvent = async (req, res) => {
   });
 };
 
-app.post('/admin', validation, validationResults, postEvent);
-
+app.post('/', validation, validationResults, postEvent);
 
 // eslint-disable-next-line no-unused-vars
 function notFoundHandler(req, res, next) {

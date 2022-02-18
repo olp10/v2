@@ -28,24 +28,24 @@ export async function getEvent(eventName) {
   const values = [eventName];
 
   const result = await query(q, values);
-  console.log('result :>> ', result);
+  console.info('result :>> ', result);
   return result !== null;
 }
 
 async function index(req, res) {
-  const { user } = req.body;
+  const user = req.user.username;
   return res.render('form', {
     user,
     data: { events: await getEvents()},
-    title: 'Undirskriftarlisti - umsjón',
+    title: 'Viðburðir - Umsjón',
     admin: true,
+    logout: '/logout',
   });
 
 }
 
 function login(req, res) {
   if (req.isAuthenticated()) {
-    console.info('Skráður inn sem Notandi');
     return res.redirect('/admin');
   }
 
@@ -58,21 +58,6 @@ function login(req, res) {
 
   return res.render('login', { message, title: 'Innskráning' });
 }
-
-/*
-async function deleteRoute(req, res) {
-  const { id } = req.params;
-
-  // eslint-disable-next-line no-undef
-  const deleted = deleteRow(id);
-
-  if (deleted) {
-    return res.redirect('/admin');
-  }
-
-  return res.render('error', { title: 'Gat ekki eytt færslu' });
-}
-*/
 
 router.get('/', ensureLoggedIn, catchErrors(index));
 router.get('/login', login);
@@ -91,6 +76,19 @@ router.post(
   },
 );
 
+async function createEvent(name, slug, description) {
+  const q = `
+  INSERT INTO vidburdir(name, slug, description)
+  VALUES ($1, $2, $3)
+  `;
+  const values = [name, slug, description];
+
+  const result = await query(q, values);
+  console.info('result :>> ', result);
+  return result !== null;
+}
+
+router.post('/admin', ensureLoggedIn, catchErrors(createEvent));
 
 router.get('/logout', (req, res) => {
   req.logout();

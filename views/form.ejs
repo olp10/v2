@@ -1,4 +1,4 @@
-<%- include('header', { title: 'Form' }) -%>
+<%- include('header', { title }) -%>
 
 <div class="grid">
   <div class="row">
@@ -26,13 +26,13 @@
 
         <div class="field">
           <label for="event">Lýsing*:</label>
-            <textarea type="text" name="event" value="<%= data.event %>" class=""></textarea>
+            <textarea type="text" name="description" value="<%= data.event %>" class=""></textarea>
         </div>
         <button>Skrá viðburð</button>
       </form>
       <hr>
       <p>Innskráður sem: <strong><%= user %></strong></p>
-      <a href="/logout">Útskrá</a>
+      <a href="<%= logout %>">Útskrá</a>
       <div class="col col-2"></div>
     </div>
   </div>

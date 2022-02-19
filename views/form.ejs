@@ -17,7 +17,7 @@
         <% }) %>
       </ul>
 
-      <form method="post" action="/" enctype="application/x-www-form-urlencoded">
+      <form method="post" action="/admin" enctype="application/x-www-form-urlencoded">
         <legend>Nýr viðburður</legend>
         <div class="field">
           <label for="name">Nafn*:</label>
@@ -25,7 +25,7 @@
         </div>
 
         <div class="field">
-          <label for="event">Lýsing*:</label>
+          <label for="description">Lýsing*:</label>
             <textarea type="text" name="description" value="<%= data.event %>" class=""></textarea>
         </div>
         <button>Skrá viðburð</button>

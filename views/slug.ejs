@@ -1,11 +1,29 @@
 <%- include('header') -%>
 
 <div class="grid">
-  <h1><%= data.name.name %></h1>
+  <h1 id="eventName"><%= data.name.name %></h1>
   <h3><%= data.name.description %></h3>
 
+  <% if (registrations.length === 0) {  %>
+    <h2 style="margin-top: 20px;">Enginn hefur skráð sig á þennan viðburð</h2>
 
-  <form method="post" action="/" echtype="application/x-www-form-urlencoded">
+  <% } %>
+
+  <% if (registrations.length > 0) { %>
+    <ul>
+      <% registrations.forEach((registration) => { %>
+        <li class="event" style="margin-left: 20px;">
+          <h3><%= registration.name %></h3>
+          <h4><%= registration.comment %></h4>
+        </li>
+
+      <% }) %>
+    </ul>
+
+  <% } %>
+
+
+  <form method="post" action="/" enctype="application/x-www-form-urlencoded">
     <legend>Skráðu þig</legend>
     <div class="field">
       <label for="name">Nafn*:</label>
@@ -13,9 +31,10 @@
     </div>
 
     <div class="field">
-      <label for="event">Athugasemd:</label>
+      <label for="comment">Athugasemd:</label>
         <textarea type="text" name="comment" value="" class=""></textarea>
     </div>
+    <input type="hidden" id="eventName" name="eventName" value="<%= data.name.name %>" class="">
     <button>Skrá mig</button>
 
   </form>

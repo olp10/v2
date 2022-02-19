@@ -5,10 +5,11 @@ import { body, validationResult } from 'express-validator';
 import { dirname, join } from 'path';
 import pg from 'pg';
 import { fileURLToPath } from 'url';
-import { getEvents } from './db.js';
+import { createEvent, getEvents } from './db.js';
 import passport from './login.js';
 import { router as adminRoute } from './routes/admin-route.js';
 import { router as indexRouter } from './routes/index-route.js';
+import { router as slugRouter } from './routes/slug-route.js';
 
 dotenv.config();
 
@@ -75,6 +76,7 @@ app.locals.isInvalid = isInvalid;
 
 
 app.use('/admin', adminRoute);
+app.use('/slug', slugRouter);
 app.use('/', indexRouter);
 
 indexRouter.post('/admin/login', adminRoute);
@@ -113,7 +115,7 @@ const validationResults = (req, res, next) => {
 
   return next();
 };
-/*
+
 const postEvent = async (req, res) => {
   const { name, description } = req.body;
   console.info('req.body :>> ', req.body);
@@ -130,9 +132,8 @@ const postEvent = async (req, res) => {
     data: { name, description },
   });
 };
-*/
 
-// app.post('/admin', validation, validationResults, postEvent);
+app.post('/admin', validation, validationResults, postEvent);
 
 // eslint-disable-next-line no-unused-vars
 function notFoundHandler(req, res, next) {
@@ -151,10 +152,12 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 
+/*
 indexRouter.post('/:slug', (req, res) => {
-  console.log('req.body :>> ', req.body);
+  console.info('req.body :>> ', req.body);
   res.redirect('/');
 });
+*/
 
 app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);

@@ -1,8 +1,7 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
 import { createEvent, getEvents } from '../db.js';
-import { catchErrors } from '../lib/utils.js';
-import passport, { ensureLoggedIn } from '../login.js';
+import passport from '../login.js';
 
 export const router = express.Router();
 
@@ -33,7 +32,9 @@ function login(req, res) {
   return res.render('login', { message, title: 'Innskráning' });
 }
 
-router.get('/', ensureLoggedIn, catchErrors(index));
+
+
+router.get('/', index);
 router.get('/login', login);
 // router.post('/delete/:id', ensureLoggedIn, catchErrors(deleteRoute));
 
@@ -58,13 +59,16 @@ const validation = [
 ];
 
 
-router.post('/admin', validation, validationResult, async (req, res) => {
-  console.log('req.params :>> ', req.params);
-  const { data } = req.params;
-  catchErrors(await createEvent(data));
-  res.redirect('/');
+router.post(
+  '/admin',
 
-  // ensureLoggedIn, catchErrors(createEvent())
+  validation, validationResult,
+
+  async (req, res) => {
+  const { name, description } = req.body;
+  console.info(name, description);
+  await createEvent(req.body.name, req.body.description);
+  res.redirect('/admin');
 });
 
 router.get('/logout', (req, res) => {

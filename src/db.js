@@ -152,7 +152,7 @@ export async function createUser(username, password) {
 }
 
 
-export async function getRegistrations(eventName) {
+export async function getRegistrations(id) {
   const q = `
   SELECT
     name, comment
@@ -161,10 +161,9 @@ export async function getRegistrations(eventName) {
   WHERE
     event=$1
   `;
-  const values = [eventName];
+  const values = [id];
 
   const result = await query(q, values);
-  console.log('result.rows :>> ', result.rows);
   return result.rows;
 }
 
@@ -198,7 +197,7 @@ export async function getEvents() {
 export async function getEventBySlug(eventSlug) {
   const q = `
   SELECT
-    name, description
+    name, description, id
   FROM
     vidburdir
   WHERE
@@ -209,8 +208,9 @@ export async function getEventBySlug(eventSlug) {
   const result = await query(q, values);
   const name = result.rows[0];
   const description = result.rows[1];
+  const id = result.rows[2];
   // console.log('name, description :>> ', name, description);
-  return { name, description };
+  return { name, description, id };
 }
 
 export async function createEvent(data) {
@@ -223,9 +223,9 @@ export async function createEvent(data) {
 
   try {
     const result = await query(q, [data.name, s, data.description]);
-    console.log('name :>> ', data.name);
-    console.log('description :>> ', data.description);
-    console.log('s :>> ', s);
+    console.info('name :>> ', data.name);
+    console.info('description :>> ', data.description);
+    console.info('s :>> ', s);
     return result.rows;
   } catch (e) {
     console.error('Gat ekki bætt við viðburði');
@@ -234,14 +234,27 @@ export async function createEvent(data) {
   return null;
 }
 
-export async function register(name, comment, eventName) {
+export async function getEventIdByName(name) {
+  const q = `
+  SELECT id
+  FROM vidburdir
+  WHERE
+  name=$1;
+  `
+  const values = [name];
+
+  const result = await query(q, values);
+  return result.rows[0];
+}
+
+export async function register(name, comment, eventId) {
   const q = `
   INSERT INTO
     skraningar(name, comment, event)
   VALUES
     ($1, $2, $3);
   `
-  const values = [name, comment, eventName];
+  const values = [name, comment, eventId];
 
   const result = await query(q, values);
   console.info('result.rows :>> ', result.rows);

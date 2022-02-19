@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS vidburdir (
 );
 
 CREATE TABLE IF NOT EXISTS skraningar (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name VARCHAR(64) NOT NULL,
   comment TEXT,
   event INT NOT NULL,

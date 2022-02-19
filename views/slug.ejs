@@ -5,7 +5,8 @@
   <h3><%= data.name.description %></h3>
 
   <% if (registrations.length === 0) {  %>
-    <h2 style="margin-top: 20px;">Enginn hefur skráð sig á þennan viðburð</h2>
+    <h1 style="margin-top: 30px;">Skráningar á viðburð</h1>
+    <h3>Enginn hefur skráð sig á þennan viðburð</h3>
 
   <% } %>
 
@@ -24,7 +25,7 @@
 
 
   <form method="post" action="/" enctype="application/x-www-form-urlencoded">
-    <legend>Skráðu þig</legend>
+    <legend><strong>Skráðu þig</strong></legend>
     <div class="field">
       <label for="name">Nafn*:</label>
       <input type="text" id="name" name="name" value="" class="">
@@ -35,7 +36,7 @@
         <textarea type="text" name="comment" value="" class=""></textarea>
     </div>
     <input type="hidden" id="eventName" name="eventName" value="<%= data.name.name %>" class="">
-    <button>Skrá mig</button>
+    <button style="width: 30%;">Skrá mig</button>
 
   </form>
 

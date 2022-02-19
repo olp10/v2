@@ -1,5 +1,11 @@
 import express from 'express';
-import { getEventBySlug, getEventIdByName, getEvents, getRegistrations, register } from '../db.js';
+import {
+  getEventBySlug,
+  getEventIdByName,
+  getEvents,
+  getRegistrations,
+  register,
+} from '../db.js';
 import { catchErrors } from '../lib/catch-errors.js';
 
 export const router = express.Router();
@@ -7,13 +13,11 @@ export const router = express.Router();
 async function indexRoute(req, res) {
   res.render('index', {
     title: 'Viðburðasíðan',
-    data: { events: await getEvents()},
+    data: { events: await getEvents() },
   });
 }
 
 router.get('/', catchErrors(indexRoute));
-// router.post('/', catchErrors(slugRoute));
-
 
 router.get('/:slug', async (req, res) => {
   const data = await getEventBySlug(req.params.slug);
@@ -22,9 +26,10 @@ router.get('/:slug', async (req, res) => {
     title: 'Viðburður',
     registrations,
     data: {
-      name: data.name, comment: data.description,
+      name: data.name,
+      comment: data.description,
     },
-  })
+  });
 });
 
 router.post('/', async (req, res) => {
@@ -32,4 +37,3 @@ router.post('/', async (req, res) => {
   register(req.body.name, req.body.comment, id.id);
   res.redirect(req.get('referer'));
 });
-

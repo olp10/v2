@@ -4,10 +4,8 @@ import pg from 'pg';
 
 dotenv.config();
 
-const {
-  DATABASE_URL: connectionString,
-  NODE_ENV: nodeEnv = 'development'
-} = process.env;
+const { DATABASE_URL: connectionString, NODE_ENV: nodeEnv = 'development' } =
+  process.env;
 
 const ssl = nodeEnv !== 'development' ? { rejectUnauthorized: false } : false;
 
@@ -17,7 +15,6 @@ pool.on('error', (err) => {
   console.error('Villa í tengingu við gagnagrunn, forrit hættir', err);
   process.exit(-1);
 });
-
 
 export async function query(_query, values = []) {
   const client = await pool.connect();
@@ -151,7 +148,6 @@ export async function createUser(username, password) {
   return null;
 }
 
-
 export async function getRegistrations(id) {
   const q = `
   SELECT
@@ -209,12 +205,10 @@ export async function getEventBySlug(eventSlug) {
   const name = result.rows[0];
   const description = result.rows[1];
   const id = result.rows[2];
-  // console.log('name, description :>> ', name, description);
   return { name, description, id };
 }
 
 export async function createEvent(data) {
-
   const s = `${data.name}.html`;
   const q = `
   INSERT INTO vidburdir(name, slug, description)
@@ -223,9 +217,6 @@ export async function createEvent(data) {
 
   try {
     const result = await query(q, [data.name, s, data.description]);
-    console.info('name :>> ', data.name);
-    console.info('description :>> ', data.description);
-    console.info('s :>> ', s);
     return result.rows;
   } catch (e) {
     console.error('Gat ekki bætt við viðburði');
@@ -240,7 +231,7 @@ export async function getEventIdByName(name) {
   FROM vidburdir
   WHERE
   name=$1;
-  `
+  `;
   const values = [name];
 
   const result = await query(q, values);
@@ -253,7 +244,7 @@ export async function register(name, comment, eventId) {
     skraningar(name, comment, event)
   VALUES
     ($1, $2, $3);
-  `
+  `;
   const values = [name, comment, eventId];
 
   const result = await query(q, values);

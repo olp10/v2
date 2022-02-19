@@ -49,12 +49,14 @@ app.use(express.static(join(path, '../public')));
 app.set('views', join(path, '../views'));
 app.set('view engine', 'ejs');
 
-app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: false,
-  maxAge: 20 * 1000, // 20 sek
-}));
+app.use(
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    maxAge: 20 * 1000, // 20 sek
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -73,7 +75,6 @@ function isInvalid(field, errors = []) {
 }
 
 app.locals.isInvalid = isInvalid;
-
 
 app.use('/admin', adminRoute);
 app.use('/slug', slugRouter);
@@ -106,7 +107,7 @@ const validationResults = (req, res, next) => {
 
   if (!result.isEmpty()) {
     // const errorMessages = errors.array().map((i) => i.msg);
-    return res.render('form', {
+    return res.render('/', {
       title: 'Formið mitt',
       errors: result.errors,
       data: { name, description },
@@ -122,8 +123,7 @@ const postEvent = async (req, res) => {
   const created = await createEvent({ name, slug: '', description });
 
   if (created) {
-    return res.send('<p>Athugasemd móttekin</p>');
-
+    return res.send('<p>Athugasemd móttekin</p> <a href="/">til baka</a>');
   }
 
   return res.render('form', {
@@ -150,14 +150,6 @@ function errorHandler(err, req, res, next) {
 
 app.use(notFoundHandler);
 app.use(errorHandler);
-
-
-/*
-indexRouter.post('/:slug', (req, res) => {
-  console.info('req.body :>> ', req.body);
-  res.redirect('/');
-});
-*/
 
 app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);

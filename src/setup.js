@@ -6,7 +6,6 @@ import { end, query } from './db.js';
 const schemaFile = './sql/schema.sql';
 const fakeData = './sql/insert.sql';
 
-
 async function create() {
   const data = await promises.readFile(schemaFile);
   const fake = await promises.readFile(fakeData);

@@ -1,0 +1,94 @@
+Date : 2022-02-19 17:10:46
+Directory : /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2
+Total : 52 files,  21514 codes, 43 comments, 423 blanks, all 21980 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          7 |     19,925 |          9 |          5 |     19,939 |
+| JavaScript |         20 |        818 |         32 |        228 |      1,078 |
+| Markdown   |          9 |        251 |          0 |         59 |        310 |
+| CSS        |          1 |        220 |          1 |         47 |        268 |
+| SCSS       |          4 |        135 |          0 |         32 |        167 |
+| HTML       |          8 |        131 |          1 |         44 |        176 |
+| SQL        |          3 |         34 |          0 |          8 |         42 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                      | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                         |         52 |     21,514 |         43 |        423 |     21,980 |
+| .VSCodeCounter                                                                                            |         10 |        246 |          0 |         52 |        298 |
+| .VSCodeCounter/2022-02-13_00-43-56                                                                        |          5 |         95 |          0 |         26 |        121 |
+| .VSCodeCounter/2022-02-19_17-10-39                                                                        |          5 |        151 |          0 |         26 |        177 |
+| public                                                                                                    |          1 |        220 |          1 |         47 |        268 |
+| sql                                                                                                       |          3 |         34 |          0 |          8 |         42 |
+| src                                                                                                       |         18 |        733 |         30 |        212 |        975 |
+| src/lib                                                                                                   |          4 |         56 |          3 |         18 |         77 |
+| src/routes                                                                                                |          4 |         89 |          0 |         30 |        119 |
+| src/test                                                                                                  |          2 |         49 |          9 |         18 |         76 |
+| styles                                                                                                    |          4 |        135 |          0 |         32 |        167 |
+| templates                                                                                                 |          1 |         14 |          0 |          1 |         15 |
+| views                                                                                                     |          8 |        131 |          1 |         44 |        176 |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                  | language   | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/details.md      | Markdown   |         45 |          0 |          6 |         51 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/diff-details.md | Markdown   |          9 |          0 |          6 |         15 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/diff.md         | Markdown   |         12 |          0 |          7 |         19 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/results.json    | JSON       |          1 |          0 |          0 |          1 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/results.md      | Markdown   |         28 |          0 |          7 |         35 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-19_17-10-39/details.md      | Markdown   |         56 |          0 |          6 |         62 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-19_17-10-39/diff-details.md | Markdown   |         38 |          0 |          6 |         44 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-19_17-10-39/diff.md         | Markdown   |         25 |          0 |          7 |         32 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-19_17-10-39/results.json    | JSON       |          1 |          0 |          0 |          1 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-19_17-10-39/results.md      | Markdown   |         31 |          0 |          7 |         38 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/.eslintrc.cjs                                      | JavaScript |         32 |          0 |          1 |         33 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/index.js                                           | JavaScript |         11 |          0 |          5 |         16 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/jest.config.cjs                                    | JavaScript |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/package-lock.json                                  | JSON       |     19,868 |          0 |          1 |     19,869 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/package.json                                       | JSON       |         46 |          9 |          1 |         56 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/public/styles.css                                  | CSS        |        220 |          1 |         47 |        268 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/readme.md                                          | Markdown   |          7 |          0 |          7 |         14 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/select.js                                          | JavaScript |         34 |          2 |         11 |         47 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/sql/drop.sql                                       | SQL        |          0 |          0 |          1 |          1 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/sql/insert.sql                                     | SQL        |         10 |          0 |          3 |         13 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/sql/schema.sql                                     | SQL        |         24 |          0 |          4 |         28 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/app.js                                         | JavaScript |        107 |         16 |         35 |        158 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/build.js                                       | JavaScript |          3 |          0 |          2 |          5 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/db.js                                          | JavaScript |        218 |          0 |         47 |        265 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/lib/catch-errors.js                            | JavaScript |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/lib/ekkidb.js                                  | JavaScript |         47 |          3 |         15 |         65 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/lib/package.json                               | JSON       |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/lib/utils.js                                   | JavaScript |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/login.js                                       | JavaScript |         35 |          1 |         10 |         46 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/package.json                                   | JSON       |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/registration.js                                | JavaScript |         94 |          0 |         23 |        117 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/routes/admin-route.js                          | JavaScript |         57 |          0 |         20 |         77 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/routes/index-route.js                          | JavaScript |         27 |          0 |          7 |         34 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/routes/package.json                            | JSON       |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/routes/slug-route.js                           | JavaScript |          2 |          0 |          2 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/setup.js                                       | JavaScript |         15 |          1 |          9 |         25 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/test/db.test.js                                | JavaScript |         13 |          6 |          6 |         25 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/test/registration.test.js                      | JavaScript |         36 |          3 |         12 |         51 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/src/users.js                                       | JavaScript |         64 |          0 |         19 |         83 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/styles/config.scss                                 | SCSS       |          8 |          0 |          2 |         10 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/styles/global.scss                                 | SCSS       |         79 |          0 |         19 |         98 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/styles/grid.scss                                   | SCSS       |         45 |          0 |         10 |         55 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/styles/styles.scss                                 | SCSS       |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/templates/events-login.js                          | JavaScript |         14 |          0 |          1 |         15 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/error.ejs                                    | HTML       |          9 |          0 |          4 |         13 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/footer.ejs                                   | HTML       |          3 |          0 |          1 |          4 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/form.ejs                                     | HTML       |         36 |          0 |          6 |         42 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/header.ejs                                   | HTML       |          8 |          0 |          2 |         10 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/index.ejs                                    | HTML       |         16 |          1 |          5 |         22 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/login.ejs                                    | HTML       |         20 |          0 |          7 |         27 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/slug.ejs                                     | HTML       |         33 |          0 |         14 |         47 |
+| /home/olafur/Documents/Skóli/Vor_2022/Vefforritun_2/v2/views/test.ejs                                     | HTML       |          6 |          0 |          5 |         11 |
+| Total                                                                                                     |            |     21,514 |         43 |        423 |     21,980 |
++-----------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

@@ -1,0 +1,284 @@
+{
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/.eslintrc.cjs": {
+    "language": "JavaScript",
+    "code": 32,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/styles/config.scss": {
+    "language": "SCSS",
+    "code": 8,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/jest.config.cjs": {
+    "language": "JavaScript",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/sql/insert.sql": {
+    "language": "SQL",
+    "code": 10,
+    "comment": 0,
+    "blank": 3
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/sql/drop.sql": {
+    "language": "SQL",
+    "code": 0,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/sql/schema.sql": {
+    "language": "SQL",
+    "code": 24,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/app.js": {
+    "language": "JavaScript",
+    "code": 107,
+    "comment": 16,
+    "blank": 35
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/styles/global.scss": {
+    "language": "SCSS",
+    "code": 79,
+    "comment": 0,
+    "blank": 19
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/styles/grid.scss": {
+    "language": "SCSS",
+    "code": 45,
+    "comment": 0,
+    "blank": 10
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/styles/styles.scss": {
+    "language": "SCSS",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/package-lock.json": {
+    "language": "JSON",
+    "code": 19868,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/login.js": {
+    "language": "JavaScript",
+    "code": 35,
+    "comment": 1,
+    "blank": 10
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/setup.js": {
+    "language": "JavaScript",
+    "code": 15,
+    "comment": 1,
+    "blank": 9
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/routes/admin-route.js": {
+    "language": "JavaScript",
+    "code": 57,
+    "comment": 0,
+    "blank": 20
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/users.js": {
+    "language": "JavaScript",
+    "code": 64,
+    "comment": 0,
+    "blank": 19
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/db.js": {
+    "language": "JavaScript",
+    "code": 218,
+    "comment": 0,
+    "blank": 47
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/routes/package.json": {
+    "language": "JSON",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/routes/index-route.js": {
+    "language": "JavaScript",
+    "code": 27,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/routes/slug-route.js": {
+    "language": "JavaScript",
+    "code": 2,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/package.json": {
+    "language": "JSON",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/package.json": {
+    "language": "JSON",
+    "code": 46,
+    "comment": 9,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/registration.js": {
+    "language": "JavaScript",
+    "code": 94,
+    "comment": 0,
+    "blank": 23
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/test/db.test.js": {
+    "language": "JavaScript",
+    "code": 13,
+    "comment": 6,
+    "blank": 6
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/test/registration.test.js": {
+    "language": "JavaScript",
+    "code": 36,
+    "comment": 3,
+    "blank": 12
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/select.js": {
+    "language": "JavaScript",
+    "code": 34,
+    "comment": 2,
+    "blank": 11
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/login.ejs": {
+    "language": "HTML",
+    "code": 20,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/footer.ejs": {
+    "language": "HTML",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/error.ejs": {
+    "language": "HTML",
+    "code": 9,
+    "comment": 0,
+    "blank": 4
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/slug.ejs": {
+    "language": "HTML",
+    "code": 33,
+    "comment": 0,
+    "blank": 14
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/header.ejs": {
+    "language": "HTML",
+    "code": 8,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/form.ejs": {
+    "language": "HTML",
+    "code": 36,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/readme.md": {
+    "language": "Markdown",
+    "code": 7,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/build.js": {
+    "language": "JavaScript",
+    "code": 3,
+    "comment": 0,
+    "blank": 2
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/lib/catch-errors.js": {
+    "language": "JavaScript",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/lib/utils.js": {
+    "language": "JavaScript",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/templates/events-login.js": {
+    "language": "JavaScript",
+    "code": 14,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/lib/package.json": {
+    "language": "JSON",
+    "code": 3,
+    "comment": 0,
+    "blank": 1
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/public/styles.css": {
+    "language": "CSS",
+    "code": 220,
+    "comment": 1,
+    "blank": 47
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/index.ejs": {
+    "language": "HTML",
+    "code": 16,
+    "comment": 1,
+    "blank": 5
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/views/test.ejs": {
+    "language": "HTML",
+    "code": 6,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/index.js": {
+    "language": "JavaScript",
+    "code": 11,
+    "comment": 0,
+    "blank": 5
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/src/lib/ekkidb.js": {
+    "language": "JavaScript",
+    "code": 47,
+    "comment": 3,
+    "blank": 15
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/diff.md": {
+    "language": "Markdown",
+    "code": 12,
+    "comment": 0,
+    "blank": 7
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/diff-details.md": {
+    "language": "Markdown",
+    "code": 9,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/details.md": {
+    "language": "Markdown",
+    "code": 45,
+    "comment": 0,
+    "blank": 6
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/results.json": {
+    "language": "JSON",
+    "code": 1,
+    "comment": 0,
+    "blank": 0
+  },
+  "file:///home/olafur/Documents/Sk%C3%B3li/Vor_2022/Vefforritun_2/v2/.VSCodeCounter/2022-02-13_00-43-56/results.md": {
+    "language": "Markdown",
+    "code": 28,
+    "comment": 0,
+    "blank": 7
+  }
+}
